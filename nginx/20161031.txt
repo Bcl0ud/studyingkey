@@ -1,0 +1,23 @@
+学习笔记 2016/10/31 [nginx 安装]
+
+1.ssh连接虚拟机。vm 设置桥接  centos 启动网卡 ONBOOT=yes  然后记得 network restart，ifconfig就可以看到ip了，主机ping通
+
+2.wget http://nginx.org/download/nginx-1.10.2.tar.gz 如果没有wget 可以 yum install wget -y 安装
+
+3.遇到了 xshell 4 中文乱码问题， 先linux echo $LANG 查看编码 然后Xshell 终端-编码  设置utf
+
+4.遇到了 ./configure: error: C compiler cc is not found  解决 yum install gcc
+
+5.遇到了 ./configure: error: the HTTP rewrite module requires the PCRE library.  解决 yum install pcre-devel  注意【pcre】！！！拼写易错 否则出现 Error: Nothing to do
+
+6.遇到了./configure: error: the HTTP gzip module requires the zlib library. 解决 yum install -y zlib-devel 。
+
+7.开始安装 make && make install 然后之后 启动./sbin/nginx 无报错，并不是万事大吉。。。netstat  -antp 查看端口 win访问不到 但是能ping通
+
+8.ps -aux | grep nginx 查看下进程无问题，查看防火墙service iptables status  关闭防火墙 service iptables stop【即时生效，重启后失效】
+
+
+注：yum时 Nothing to do 代表 安装过或者无安装包
+
+
+http://jingyan.baidu.com/article/f7ff0bfc7181492e27bb1360.html git教程

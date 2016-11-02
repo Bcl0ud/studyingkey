@@ -1,0 +1,31 @@
+[虚拟主机管理]
+
+1.首先讲到昨天的知识点，nginx 的信号 不仅可以用 kill传递 也可以用 ./sbin/nginx -s reload
+
+2.配置文件分段 
+
+	全局区 worker_processes 1; 有一工作的子进程，可以自行修改 太大无意 争夺cpu 一般设置为 cpu数量*核数
+	event 配置连接特性 比如 一个work能同时产生多少连接 worker——connections 1024 一个进程最大连接数量
+	http server 为虚拟主机
+
+	serve{
+		listen 80;
+		server_name x.com
+		location / {
+			root x.com
+			index index.html
+		}
+	}
+
+
+3.学习了 nginx.conf 的配置写法  解析域名 指向目录 端口 然后./sbin/nginx -s reload 软重启 
+
+
+4.今天内容不多，视频里看到了vim显示行数 然后复制的功能，自行百度了一下 http://www.2cto.com/os/201307/224021.html
+	
+	:set nu 显示行数	
+	复制：光标移动复制开始位置 按下 y 复制行数 y
+	粘贴：光标移动粘贴位置 按下 p
+
+
+	

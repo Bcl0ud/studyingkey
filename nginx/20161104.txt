@@ -14,4 +14,7 @@
 
 4.日志可分析攻击，分析来访页面 ip等
 
-最后留了 复制拆分的 思路。利用 use1 信号量控制nginx生成新日志 生成一份新日志文件 再利用linux 计划任务
+5.最后留了 复制拆分的 思路。利用 use1 信号量控制nginx生成新日志 生成一份新日志文件 再利用linux 计划任务
+
+6.实际联系中 reload 遇到了 "/usr/local/nginx/logs/nginx.pid" failed (2: No such file or directory) 报错。
+解决办法就是 开启nginx 原因：没启动nginx 有文件没找到

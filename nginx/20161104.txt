@@ -1,0 +1,17 @@
+[nginx 日志]
+
+
+1.nginx 可以给不同的server做log，就是不同变量的组合。 log格式 main是定义好的一种格式 包含IP地址 time 请求方式 状态 ua  代理等
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+
+2.知识点蜘蛛。us没有浏览器信息可能是蜘蛛
+
+3.单独server 开启log 记得取消 main格式注释
+
+4.日志可分析攻击，分析来访页面 ip等
+
+最后留了 复制拆分的 思路。利用 use1 信号量控制nginx生成新日志 生成一份新日志文件 再利用linux 计划任务

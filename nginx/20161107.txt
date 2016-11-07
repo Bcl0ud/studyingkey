@@ -1,0 +1,50 @@
+[日志分割 shell脚本 计划任务]
+
+1. 查看昨天日期 date -d yesterday +%y%m%d
+
+2.shell脚本
+
+#! /bin/bash
+
+LOGPATH=/usr/local/nginx/logs/x.com.access.log
+BASEPATH=/usr/local/nginx/date
+
+bak=$BASEPATH/$(date -d yesterday +%Y%m%d%H%M).x.com.access.log
+echo $bak
+
+#######第一步调试成功，注意 变量赋值等号之间不要有空格！！时间戳格式字母大小！#######
+
+3.shell脚本
+
+#! /bin/bash
+
+LOGPATH=/usr/local/nginx/logs/x.com.access.log
+BASEPATH=/usr/local/nginx/date
+
+bak=$BASEPATH/$(date -d yesterday +%Y%m%d%H%M).x.com.access.log
+
+mv $LOGPATH $bak
+touch $LOGPATh
+
+kill -USR1  `cat /usr/local/nginx/logs/nginx.pid`
+
+
+
+4.计划任务 */1 * * * *  sh /use/local/nginx/date/runlog.sh #由于date目录我理解错误，没有写在根目录，名字也错了。
+
+5.最终shell
+"runlog.sh" 11L, 282C                                                                                                                                                                                                      5,1          全部
+#! /bin/bash
+
+LOGPATH=/usr/local/nginx/logs/x.com.access.log
+BASEPATH=/usr/local/nginx/date/$(date -d yesterday +%Y%m)
+mkdir -p $BASEPATH
+bak=$BASEPATH/$(date -d yesterday +%d%H%M).x.com.access.log
+
+mv $LOGPATH $bak
+touch $LOGPATh
+
+
+
+
+6.总结  mkdir /date 和 mkdir date 差很多！！！！！ 
